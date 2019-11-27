@@ -7,16 +7,14 @@ class ProductPage(BasePage):
     def add_product_to_basket(self):
         add_to_basket = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BTN)
         add_to_basket.click()
-        self.solve_quiz_and_get_code()
-        basket_alerts = self.browser.find_elements(*ProductPageLocators.BASKET_ALERTS)
-        self.should_be_busket_allert_product_name(basket_alerts)
-        self.should_be_busket_allert_price(basket_alerts)
 
-    def should_be_busket_allert_product_name(self, basket_alerts):
+    def should_be_busket_allert_product_name(self):
+        basket_alerts = self.browser.find_elements(*ProductPageLocators.BASKET_ALERTS)
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
         assert basket_alerts[0].text == product_name, "Product name in basket allert are different"
 
-    def should_be_busket_allert_price(self, basket_alerts):
+    def should_be_busket_allert_price(self):
+        basket_alerts = self.browser.find_elements(*ProductPageLocators.BASKET_ALERTS)
         price = self.browser.find_element(*ProductPageLocators.PRICE).text
         assert basket_alerts[2].text == price, "Price in basket allert are different"
 

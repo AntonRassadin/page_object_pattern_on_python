@@ -8,7 +8,6 @@ class BasePageLocators():
 
 class BasketPageLocators():
     BASKET_ITEMS_BLOCK = (By.CSS_SELECTOR, "div.basket-items")
-    #BASKET_IS_EMPTY_MESSAGE = (By.XPATH, "//div[contains(@class,'alert-info')]//p[contains(text(),'empty')]")
     BASKET_IS_EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
 
 class MainPageLocators():
