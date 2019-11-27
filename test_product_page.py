@@ -1,8 +1,8 @@
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
 from .pages.login_page import LoginPage
-from random import randint
 import pytest
+import time
 
 @pytest.mark.user_basket
 class TestUserAddToBasketFromProductPage():
@@ -12,7 +12,7 @@ class TestUserAddToBasketFromProductPage():
         page = LoginPage(browser, link)
         page.open()
         page.go_to_login_page()
-        page.register_new_user(f"vasya_{randint(0, 99999)}@gmail.com", "ababapauk_9")
+        page.register_new_user(f"vasya_{str(time.time())}@fakemail.com", "ababapauk_9")
         page.should_be_authorized_user()
 
     def test_user_can_add_product_to_basket(self, browser):
