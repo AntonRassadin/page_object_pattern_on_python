@@ -1,6 +1,5 @@
 from .base_page import BasePage
 from .locators import BasketPageLocators
-import pytest
 
 class BasketPage(BasePage):
     def should_be_items_in_basket(self):
