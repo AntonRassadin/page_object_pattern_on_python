@@ -14,11 +14,10 @@ class TestUserAddToBasketFromProductPage():
         page = MainPage(browser, link)
         page.open()
         page.go_to_login_page()
-        login_page = LoginPage(browser, link)
+        login_page = LoginPage(browser, browser.current_url)
         login_page.register_new_user(f"vasya_{str(time.time())}@fakemail.com", "ababapauk_9")
         login_page.should_be_authorized_user()
 
-    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         page = ProductPage(browser, product_page_link)
         page.open()
@@ -85,6 +84,6 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page = ProductPage(browser, product_page_link)
     page.open()                 
     page.go_to_basket_page()    
-    basket_page = BasketPage(browser, product_page_link)   
+    basket_page = BasketPage(browser, browser.current_url)   
     basket_page.should_not_be_items_in_basket() 
     basket_page.should_be_message_empty_basket() 
