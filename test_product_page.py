@@ -1,6 +1,7 @@
 from pages.product_page import ProductPage
 from pages.basket_page import BasketPage
 from pages.login_page import LoginPage
+from pages.main_page import MainPage
 import pytest
 import time
 
@@ -10,11 +11,12 @@ class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
         link = "http://selenium1py.pythonanywhere.com/"
-        page = LoginPage(browser, link)
+        page = MainPage(browser, link)
         page.open()
         page.go_to_login_page()
-        page.register_new_user(f"vasya_{str(time.time())}@fakemail.com", "ababapauk_9")
-        page.should_be_authorized_user()
+        login_page = LoginPage(browser, link)
+        login_page.register_new_user(f"vasya_{str(time.time())}@fakemail.com", "ababapauk_9")
+        login_page.should_be_authorized_user()
 
     @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
